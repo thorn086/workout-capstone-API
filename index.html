@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Workout Partner</title>
+    <link rel="stylesheet" href="main.css" text="text/css">
+</head>
+
+<body>
+    <main>
+        <header role="banner">
+            <div class="row">
+                <div class="information">
+                    <h1 class="exercise">What exercise you looking to do now?</h1>
+                    <form id="exerciseform">
+                        <input id="searchfield" type="text" name="searchfield" placeholder="Type in your exercise here."
+                            autofocus required spellcheck="true">
+                            <h2>Select a specific body area, if you want more of a variety</h2>
+                        <fieldset>
+                            <legend>Select Body Area</legend>
+                        <label for ="B1">Abs</label>
+                        <input type="checkbox" name="Body" id="B1" Value="Abs">
+                        <label for ="B2">Arms</label>
+                        <input type="checkbox" name="Body" id="B2" Value="Arms">
+                        <label for ="B3">Back</label>
+                        <input type="checkbox" name="Body" id="B3" Value="Back">
+                        <label for ="B4">Calves</label>
+                        <input type="checkbox" name="Body" id="B4" Value="Calves">
+                        <label for ="B5">Chest</label>
+                        <input type="checkbox" name="Body" id="B5" Value="Chest">
+                        <label for ="B6">Legs</label>
+                        <input type="checkbox" name="Body" id="B6" Value="legs">
+                        <label for ="B7">Shoulders</label>
+                        <input type="checkbox" name="Body" id="B7" Value="Shoulders">
+                    </fieldset>
+                        <button id="open-search">Search</button>
+                    </form>
+                </div>
+            </div>
+        </header>
+
+
+        <div class="content">
+            <div class="box right">
+                <h2 class="boxtitle youtubetitle"><span class="title_style"><i class="fa fa-youtube-play"
+                            aria-hidden="true"></i> WATCH</span></h2>
+                <div class="results youtube">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="box left">
+                <h2>Your Exercise</h2>
+                <div class="results wger">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="box hide">
+                <h2>Specific Body Part Exercises</h2>
+                <div class="results wger">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <div class="newSerach">
+            <h2>New Search</h2>
+        </div>
+    </footer>
+</body>
+
+</html>
