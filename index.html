@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Workout Partner</title>
     <link rel="stylesheet" href="main.css" text="text/css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -15,9 +16,10 @@
             <div class="row">
                 <div class="information">
                     <h1 class="exercise">What exercise you looking to do now?</h1>
-                    <form id="exerciseform">
-                        <input id="searchfield" type="text" name="searchfield" placeholder="Type in your exercise here."
+                    <form id="exercise-form">
+                        <input id="search-field" type="text" name="searchfield" placeholder="Type in your exercise here."
                             autofocus required spellcheck="true">
+                            <input id="searchone" type="submit" value="Search">
                             <h2>Select a specific body area, if you want more of a variety</h2>
                         <fieldset>
                             <legend>Select Body Area</legend>
@@ -36,18 +38,28 @@
                         <label for ="B7">Shoulders</label>
                         <input type="checkbox" name="Body" id="B7" Value="Shoulders">
                     </fieldset>
-                        <button id="open-search">Search</button>
+                        <input id="searchtwo" type="submit" value="Search">
                     </form>
                 </div>
             </div>
         </header>
 
+        <div class="content">
+            <div class="box left">
+                <h2>Your Exercise</h2>
+                <div class="your-results-wger">
+                    <ul id="wger-results-user">
+                    </ul>
+                    <p id="js-error-message hide" class="error-message"></p>
+                </div>
+            </div>
+        </div>
 
         <div class="content">
             <div class="box right">
                 <h2 class="boxtitle youtubetitle"><span class="title_style"><i class="fa fa-youtube-play"
                             aria-hidden="true"></i> WATCH</span></h2>
-                <div class="results youtube">
+                <div class="results-youtube">
                     <td></td>
                     <td></td>
                     <td></td>
@@ -55,23 +67,12 @@
             </div>
         </div>
 
-        <div class="content">
-            <div class="box left">
-                <h2>Your Exercise</h2>
-                <div class="results wger">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </div>
-            </div>
-        </div>
+   
 
         <div class="content">
             <div class="box hide">
                 <h2>Specific Body Part Exercises</h2>
-                <div class="results wger">
+                <div class="specific-results-wger">
                     <td></td>
                     <td></td>
                     <td></td>
@@ -87,6 +88,7 @@
             <h2>New Search</h2>
         </div>
     </footer>
+    <script src="index.js"></script>
 </body>
 
 </html>

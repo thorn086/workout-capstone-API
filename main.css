@@ -30,13 +30,13 @@ header{
     background: lightgreen;
 }
 
-#searchfield{
+#search-field{
     width: 40%;
     height: 30px;
     margin: 1%;
 }
 
-button{
+#searchone, #searchtwo{
     float: right;
     width: 10%;
     height: 30px;
