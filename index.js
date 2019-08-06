@@ -4,6 +4,7 @@
 const searchURL = "https://wger.de/api/v2/exercise/search/";
 
 
+
 //format params
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
@@ -31,16 +32,18 @@ function displayResults(wgerJson) {
     //$('#results').removeClass('hidden');
 };
 
+
+
 // display id from handleLearnMore() to DOM
 function idResults(idJson) {
-
+    
     console.log(idJson);
     $('#wger-results-user').empty();
-    console.log(idJson.name);
+    
         $('#wger-results-user').append(
             `<li><h3>${idJson.name}</h3>
         <p>${idJson.description}</p>
-        <button id="back"> Go Back</button></li>`
+        <button onclick="displayResults(lastSearchResult)"> Go Back</button></li>`
         );
     
 
@@ -58,7 +61,7 @@ function getTerm(userTerm) {
     const url = searchURL + '?' + queryString;
 
     console.log(url);
-
+   
     fetch(url)
         .then(wger => {
             if (wger.ok) {
@@ -66,7 +69,9 @@ function getTerm(userTerm) {
             }
             throw new Error(wger.statusText);
         })
-        .then(wgerJson => displayResults(wgerJson))
+        .then(wgerJson => {
+            let lastSearchResult= wgerJson;
+            displayResults(wgerJson)})
         .catch(err => {
             $('#js-error-message').text(`Opps!: ${err.message}`);
         });
