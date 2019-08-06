@@ -1,5 +1,7 @@
 *{
     box-sizing: border-box;
+    margin:0;
+    padding:0;
 }
 body{
     background: lightgray;
@@ -18,14 +20,15 @@ header{
 }
 
 .box{
-    height: 700px;
-    width: 400px;
+    height: 1500px;
+    width: 500px;
     border: 1px solid black;
 }
 
 .content{
     display: inline-block;
-    margin:  1% 5% 1% 17%;
+    position: static;
+    margin:  1% 9%;
     text-align: center;
     background: lightgreen;
 }
@@ -55,4 +58,12 @@ fieldset{
     width: 40%;
     margin: 1%;
     
+}
+
+li{
+    list-style-type: none;
+}
+
+h3, p {
+    padding: 2%;
 }
