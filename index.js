@@ -1,6 +1,6 @@
 'use strict'
 
-//global consts
+//global consts/variables
 const searchURL = "https://wger.de/api/v2/exercise/search/";
 let lastSearchResult;
 
@@ -49,7 +49,7 @@ function idResults(idJson) {
             `<li><h3>${idJson.name}</h3>
         <p>${idJson.description}</p>
         <button onclick="displayResults(lastSearchResult)"> Go Back</button>
-        <button class="newSearch">Search Again</button></li>`
+        <button><a href="#startOver">Search Again</a></button></li>`
         
         );
     
