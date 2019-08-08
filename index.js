@@ -6,10 +6,6 @@ let lastSearchResult;
 
 
 
-function newFunction() {
-    return `${wgerJson}`;
-}
-
 //format params
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
@@ -121,22 +117,24 @@ function handleLearnMore() {
 
 }
 
+function checkButtonSearch(){
+    $('#search-two').on('click', event =>{
+    event.preventDefault();   
+    let radioValue = $("input[name='Body']:checked").val();
+    console.log(radioValue);
+});
+}
+//
+
+
 $(function () {
     handleSubmit();
     handleLearnMore();
+    checkButtonSearch();
+    
     
 });
 
 
 
-//hadle checked items so only one can be checked
 
-var limit = 3;
-$('.compare_items').on('click', function (evt) {
-    index = $(this).parent('td').parent('tr').index();
-    if ($('.compare_items:checked').length >= limit) {
-        $('.compare_items').eq(localStorage.getItem('last-checked-item')).removeAttr('checked');
-        //this.checked = false;
-    }
-    localStorage.setItem('last-checked-item', index);
-});
