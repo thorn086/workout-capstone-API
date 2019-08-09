@@ -64,8 +64,9 @@ function goBack(){
 function radioResults(radioJson,radioLabel) {
 
     console.log(radioJson);
-    console.log(radioJson.next);
+    
     $('#wger-results-user').empty();
+    
     
 
     if (radioJson.previous = "null"){
@@ -79,6 +80,7 @@ function radioResults(radioJson,radioLabel) {
             </li>`
             )
         };
+       
         
     } else if (radioJson.next = "null"){
         $('#previous-hidden').show();
@@ -103,7 +105,7 @@ function radioResults(radioJson,radioLabel) {
         </li>`
         )
     };
-
+handleNextButton();
     //$('#results').removeClass('hidden');
 }
 };
@@ -157,9 +159,9 @@ function handleLearnMore() {
 
 //handle when someone sellects the Next button
 /*function handleNextButton(){
-    $('#wger-results-user').on('click','#next-hidden', event=>{
-
-    } ) 
+    $('#wger-results-user').on('click','#next-hidden', 
+        
+    }) 
         
     
 }*/
@@ -197,7 +199,7 @@ function checkButtonSearch() {
                 if (radio.ok) {
                     return radio.json();
                 }
-                throw new Error(radi0.statusText);
+                throw new Error(radio.statusText);
             })
             .then(radioJson => radioResults(radioJson,radioLabel))
             .catch(err => {
