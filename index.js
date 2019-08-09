@@ -64,9 +64,36 @@ function goBack(){
 function radioResults(radioJson,radioLabel) {
 
     console.log(radioJson);
-
+    console.log(radioJson.next);
     $('#wger-results-user').empty();
+    
 
+    if (radioJson.previous = "null"){
+        $('#next-hidden').show();
+        for (let i = 0; i < radioJson.results.length; i++) {
+
+            $('#wger-results-user').append(
+                `<li><h3>${radioJson.results[i].name}</h3>
+            <p>${radioLabel}</p>
+            <button class="id-fetch" data-id="${radioJson.results[i].id}">Learn More</button>
+            </li>`
+            )
+        };
+        
+    } else if (radioJson.next = "null"){
+        $('#previous-hidden').show();
+        for (let i = 0; i < radioJson.results.length; i++) {
+
+            $('#wger-results-user').append(
+                `<li><h3>${radioJson.results[i].name}</h3>
+            <p>${radioLabel}</p>
+            <button class="id-fetch" data-id="${radioJson.results[i].id}">Learn More</button>
+            </li>`
+            )
+        };
+    } else {
+        $('#next-hidden').show();
+        $('#previous-hidden').show();
     for (let i = 0; i < radioJson.results.length; i++) {
 
         $('#wger-results-user').append(
@@ -78,6 +105,7 @@ function radioResults(radioJson,radioLabel) {
     };
 
     //$('#results').removeClass('hidden');
+}
 };
 
 
@@ -127,6 +155,15 @@ function handleLearnMore() {
     });
 }
 
+//handle when someone sellects the Next button
+/*function handleNextButton(){
+    $('#wger-results-user').on('click','#next-hidden', event=>{
+
+    } ) 
+        
+    
+}*/
+
 function fetchExInfo(idName) {
     const exURL = "https:/wger.de/api/v2/exercise/" + idName;
 
@@ -150,7 +187,7 @@ function checkButtonSearch() {
     $('#search-two').on('click', event => {
         event.preventDefault();
         let radioValue = $("input[name='Body']:checked").val();
-        const radioURL = "https://wger.de/api/v2/exercise/?category=" + radioValue + "&language=2&status=2";
+        const radioURL = "https://wger.de/api/v2/exercise/?limit=8&category=" + radioValue + "&language=2&status=2";
         const radioLabel = $(  $(":radio[name=Body]:checked").prop("labels") ).text();
         console.log(radioLabel);
         console.log(radioURL);

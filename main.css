@@ -15,7 +15,7 @@ header{
     background:  lightblue;
 }
 
-.hide{
+.hide, #next-hidden, #previous-hidden{
     display: none;
 }
 
@@ -41,6 +41,12 @@ header{
 
 #search-one, #search-two{
     float: right;
+    width: 10%;
+    height: 30px;
+    margin: 0 10% 0 0;
+}
+
+#next, #previous{
     width: 10%;
     height: 30px;
     margin: 0 10% 0 0;
