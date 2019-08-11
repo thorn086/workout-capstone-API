@@ -2,7 +2,8 @@
 
 //global consts/variables
 const searchURL = "https://wger.de/api/v2/exercise/search/";
-let lastSearchResult;
+let previousSearchResult;
+let nextJson;
 
 
 
@@ -55,21 +56,21 @@ function idResults(idJson) {
     //$('#results').removeClass('hidden');
 };
 
-function goBack(){
+function goBack() {
     $('#wger-results-user').show();
     $('#wger-learnMore-user').empty();
 }
 
 // display results from search two to the DOM
-function radioResults(radioJson,radioLabel) {
+function radioResults(radioJson, radioLabel) {
 
     console.log(radioJson);
-    
-    $('#wger-results-user').empty();
-    
-    
+    previousSearchResult = radioJson.previous;
+    nextJson = radioJson.next;
 
-    if (radioJson.previous = "null"){
+    $('#wger-results-user').empty();
+
+    if (radioJson.previous = "null") {
         $('#next-hidden').show();
         for (let i = 0; i < radioJson.results.length; i++) {
 
@@ -80,9 +81,7 @@ function radioResults(radioJson,radioLabel) {
             </li>`
             )
         };
-       
-        
-    } else if (radioJson.next = "null"){
+    } else if (radioJson.next = "null") {
         $('#previous-hidden').show();
         for (let i = 0; i < radioJson.results.length; i++) {
 
@@ -96,18 +95,18 @@ function radioResults(radioJson,radioLabel) {
     } else {
         $('#next-hidden').show();
         $('#previous-hidden').show();
-    for (let i = 0; i < radioJson.results.length; i++) {
+        for (let i = 0; i < radioJson.results.length; i++) {
 
-        $('#wger-results-user').append(
-            `<li><h3>${radioJson.results[i].name}</h3>
+            $('#wger-results-user').append(
+                `<li><h3>${radioJson.results[i].name}</h3>
         <p>${radioLabel}</p>
         <button class="id-fetch" data-id="${radioJson.results[i].id}">Learn More</button>
         </li>`
-        )
-    };
-handleNextButton();
-    //$('#results').removeClass('hidden');
-}
+            )
+        };
+
+        //$('#results').removeClass('hidden');
+    }
 };
 
 
@@ -131,7 +130,7 @@ function getTerm(userTerm) {
             throw new Error(wger.statusText);
         })
         .then(wgerJson => {
-            lastSearchResult = wgerJson;
+           
             displayResults(wgerJson)
         })
         .catch(err => {
@@ -158,13 +157,39 @@ function handleLearnMore() {
 }
 
 //handle when someone sellects the Next button
-/*function handleNextButton(){
-    $('#wger-results-user').on('click','#next-hidden', 
-        
-    }) 
-        
-    
-}*/
+function handleNextButton() {
+    $('#next-hidden').on('click', function (){
+        fetch(nextJson)
+        .then(nextPage => {
+            if (nextPage.ok) {
+                return nextPage.json();
+            }
+            throw new Error(nextPage.statusText);
+        })
+        .then(nextPageJson => radioResults(nextPageJson))
+        .catch(err => {
+            $('#js-error-message').text(`Opps!: ${err.message}`);
+        });
+    });
+}
+
+function handlePreviousButton() {
+    $('#previous-hidden').on('click', function (){
+        fetch(previousSearchResultJson)
+        .then(previousSearchResult => {
+            if (previousSearchResult.ok) {
+                return previousSearchResult.json();
+            }
+            throw new Error(previousSearchResult.statusText);
+        })
+        .then(previousSearchResultJson => radioResults(previousSearchResultJson))
+        .catch(err => {
+            $('#js-error-message').text(`Opps!: ${err.message}`);
+        });
+    });
+}
+
+
 
 function fetchExInfo(idName) {
     const exURL = "https:/wger.de/api/v2/exercise/" + idName;
@@ -190,7 +215,7 @@ function checkButtonSearch() {
         event.preventDefault();
         let radioValue = $("input[name='Body']:checked").val();
         const radioURL = "https://wger.de/api/v2/exercise/?limit=8&category=" + radioValue + "&language=2&status=2";
-        const radioLabel = $(  $(":radio[name=Body]:checked").prop("labels") ).text();
+        const radioLabel = $($(":radio[name=Body]:checked").prop("labels")).text();
         console.log(radioLabel);
         console.log(radioURL);
 
@@ -201,7 +226,7 @@ function checkButtonSearch() {
                 }
                 throw new Error(radio.statusText);
             })
-            .then(radioJson => radioResults(radioJson,radioLabel))
+            .then(radioJson => radioResults(radioJson, radioLabel))
             .catch(err => {
                 $('#js-error-message').text(`Opps!: ${err.message}`);
             });
@@ -215,6 +240,8 @@ $(function () {
     handleSubmit();
     handleLearnMore();
     checkButtonSearch();
+    handleNextButton();
+    handlePreviousButton();
 
 
 });
