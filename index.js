@@ -2,9 +2,18 @@
 
 //global consts/variables
 const searchURL = "https://wger.de/api/v2/exercise/search/";
+const apiKey = 'AIzaSyAmOsgJp0DLCE0Cw5yPIvtG4rTwSz1m2f0'; 
+const searchYtURL = 'https://www.googleapis.com/youtube/v3/search';
 let previousSearchResult;
 let nextJson;
+let searchTermYouTube;
+let bodyArea;
 
+
+
+/*function activateScroll(){
+    $('html, body').animate({ scrollTop: $('main').offset().top - 20});    
+  }*/
 
 
 
@@ -20,9 +29,12 @@ function formatQueryParams(params) {
 function displayResults(wgerJson) {
 
     console.log(wgerJson);
-
     $('#wger-results-user').empty();
 
+    if (wgerJson.suggestions.length === 0){
+        $('#wger-results-user').append(
+            `<li><h3>Sorry, Your search has no results. Try Again!</h3></li>`
+        )}else{
     for (let i = 0; i < wgerJson.suggestions.length; i++) {
 
         $('#wger-results-user').append(
@@ -32,7 +44,7 @@ function displayResults(wgerJson) {
         </li>`
         )
     };
-
+    }
     //$('#results').removeClass('hidden');
 };
 
@@ -41,7 +53,10 @@ function displayResults(wgerJson) {
 // display id from handleLearnMore() to DOM
 function idResults(idJson) {
 
-    console.log(idJson);
+    console.log(idJson); 
+    searchTermYouTube = `${idJson.name}`;
+    getYouTubeVideos(searchTermYouTube);
+    console.log(searchTermYouTube);
     $('#wger-results-user').hide();
 
     $('#wger-learnMore-user').append(
@@ -59,35 +74,41 @@ function idResults(idJson) {
 function goBack() {
     $('#wger-results-user').show();
     $('#wger-learnMore-user').empty();
+    $('.results-youtube').empty();
 }
 
 // display results from search two to the DOM
-function radioResults(radioJson, radioLabel) {
+function radioResults(radioJson, bodyArea) {
 
     console.log(radioJson);
+    //console.log(previousSearchResult);
+   // console.log(`${radioLabel}`);
     previousSearchResult = radioJson.previous;
     nextJson = radioJson.next;
 
     $('#wger-results-user').empty();
 
-    if (radioJson.previous = "null") {
+    if (radioJson.previous === null) {
         $('#next-hidden').show();
+        $('#previous-hidden').hide();
         for (let i = 0; i < radioJson.results.length; i++) {
 
             $('#wger-results-user').append(
                 `<li><h3>${radioJson.results[i].name}</h3>
-            <p>${radioLabel}</p>
+            <p>${bodyArea}</p>
             <button class="id-fetch" data-id="${radioJson.results[i].id}">Learn More</button>
             </li>`
             )
         };
-    } else if (radioJson.next = "null") {
+    } else if (radioJson.next === null) {
         $('#previous-hidden').show();
+        $('#next-hidden').hide();
         for (let i = 0; i < radioJson.results.length; i++) {
 
             $('#wger-results-user').append(
                 `<li><h3>${radioJson.results[i].name}</h3>
-            <p>${radioLabel}</p>
+            <p>${bodyArea}</p>
+            
             <button class="id-fetch" data-id="${radioJson.results[i].id}">Learn More</button>
             </li>`
             )
@@ -99,7 +120,7 @@ function radioResults(radioJson, radioLabel) {
 
             $('#wger-results-user').append(
                 `<li><h3>${radioJson.results[i].name}</h3>
-        <p>${radioLabel}</p>
+        <p>${bodyArea}</p>
         <button class="id-fetch" data-id="${radioJson.results[i].id}">Learn More</button>
         </li>`
             )
@@ -117,7 +138,7 @@ function getTerm(userTerm) {
         term: userTerm
     };
 
-    const queryString = formatQueryParams(params);
+    let queryString = formatQueryParams(params);
     const url = searchURL + '?' + queryString;
 
     console.log(url);
@@ -154,7 +175,54 @@ function handleLearnMore() {
         console.log(idName);
         fetchExInfo(idName);
     });
+    
 }
+
+// get Youtube Videos with learn more function
+function getYouTubeVideos(searchTermYouTube) {
+    
+  const tubeParams = {
+    q:searchTermYouTube,
+    part: 'snippet',
+    maxResults: 3,
+    key: apiKey
+  };
+  
+  let queryString = formatQueryParams(tubeParams)
+  const youTubeURL = searchYtURL + '?' + queryString;
+  console.log(youTubeURL);
+
+  fetch(youTubeURL)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(response.statusText);
+    })
+    .then(responseJson => videoResults(responseJson))
+    .catch(err => {
+      $('#js-error-message').text(`Something went wrong: ${err.message}`);
+    });
+}
+
+function videoResults(responseJson) {
+        
+        console.log(responseJson);
+        $('.results-youtube').empty();
+        
+        for (let i = 0; i < responseJson.items.length; i++){
+       
+          $('.results-youtube').append(
+            `<li><h3>${responseJson.items[i].snippet.title}</h3>
+            <p>${responseJson.items[i].snippet.description}</p>
+            <img src='${responseJson.items[i].snippet.thumbnails.default.url}'>
+            </li>`
+          )};
+         
+        //$('#results').removeClass('hidden');
+}
+
+
 
 //handle when someone sellects the Next button
 function handleNextButton() {
@@ -173,9 +241,10 @@ function handleNextButton() {
     });
 }
 
+//handle when someone selects previous button
 function handlePreviousButton() {
     $('#previous-hidden').on('click', function (){
-        fetch(previousSearchResultJson)
+        fetch(previousSearchResult)
         .then(previousSearchResult => {
             if (previousSearchResult.ok) {
                 return previousSearchResult.json();
@@ -190,7 +259,7 @@ function handlePreviousButton() {
 }
 
 
-
+//Search wger by Id name in first fetch
 function fetchExInfo(idName) {
     const exURL = "https:/wger.de/api/v2/exercise/" + idName;
 
@@ -210,13 +279,14 @@ function fetchExInfo(idName) {
 }
 
 //listener for search two
-function checkButtonSearch() {
+function radioButtonSearch() {
     $('#search-two').on('click', event => {
         event.preventDefault();
         let radioValue = $("input[name='Body']:checked").val();
         const radioURL = "https://wger.de/api/v2/exercise/?limit=8&category=" + radioValue + "&language=2&status=2";
-        const radioLabel = $($(":radio[name=Body]:checked").prop("labels")).text();
-        console.log(radioLabel);
+        
+         bodyArea = $($(":radio[name=Body]:checked").prop("labels")).text();
+        console.log(bodyArea);
         console.log(radioURL);
 
         fetch(radioURL)
@@ -226,7 +296,7 @@ function checkButtonSearch() {
                 }
                 throw new Error(radio.statusText);
             })
-            .then(radioJson => radioResults(radioJson, radioLabel))
+            .then(radioJson => radioResults(radioJson, bodyArea))
             .catch(err => {
                 $('#js-error-message').text(`Opps!: ${err.message}`);
             });
@@ -239,13 +309,9 @@ function checkButtonSearch() {
 $(function () {
     handleSubmit();
     handleLearnMore();
-    checkButtonSearch();
+    radioButtonSearch();
     handleNextButton();
     handlePreviousButton();
-
-
 });
-
-
 
 
