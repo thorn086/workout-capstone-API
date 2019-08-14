@@ -4,15 +4,22 @@
     padding:0;
 }
 body{
-    background: lightgray;
+    background-image: url(images/wallcolor-api-background.png);
 }
 header{
-    height: 500px;
-    width: 90%;
+    margin:2%;
+}
+.information{
+    height: 1000px;
+    width: 100%;
     border: 1px solid black;
-    margin: 1% 3%;
     padding: 1%;
-    background:  lightblue;
+    background-image: url(images/lacing_shoes_large.jpg);
+    background-repeat:  no-repeat;
+    background-size: auto;
+}
+#bodyArea{
+    margin-top: 150px;
 }
 
 .hide, #next-hidden, #previous-hidden{
@@ -20,30 +27,50 @@ header{
 }
 
 .box{
-    height: 1500px;
-    width: 500px;
-    border: 1px solid black;
+    height: 500px;
+    width: auto;
+    border: 1px solid white;
+    
 }
 
 .content{
-    display: inline-block;
+    display: block;
     position: static;
-    margin:  1% 9%;
     text-align: center;
-    background: lightgreen;
+    padding: 4%;
+    margin:3%;
+    background:
+radial-gradient(black 15%, transparent 16%) 0 0,
+radial-gradient(black 15%, transparent 16%) 8px 8px,
+radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+background-color:#282828;
+background-size:16px 16px;
+}
+#exercise-form{
+    margin-top:270px;
+    width:auto;
+    height:80%;
 }
 
+#row{
+    margin: 10% 0 10% 5%;
+}
+h1{
+    margin-bottom: 70px;
+}
 #search-field{
-    width: 40%;
-    height: 30px;
+    width: 70%;
+    height: 20px;
     margin: 1%;
+    padding:3%;
 }
 
 #search-one, #search-two{
-    float: right;
-    width: 10%;
-    height: 30px;
-    margin: 0 10% 0 0;
+    border: 1px solid black;
+    width: 60px;
+    height: 20px;
+    
 }
 
 #next, #previous{
@@ -61,7 +88,8 @@ footer{
 }
 
 fieldset{
-    width: 40%;
+    width: 90%;
+    height: 100px;
     margin: 1%;
     
 }

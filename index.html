@@ -7,42 +7,51 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Workout Partner</title>
     <link rel="stylesheet" href="main.css" text="text/css">
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <main>
         <header role="banner">
-            <div class="row">
-                <div class="information">
-                    <h1 class="exercise">What exercise you looking to do now?</h1>
-                    
-                    <form id="exercise-form">
-                            <a name="startOver"></a><input id="search-field" type="text" name="searchfield" placeholder="Type in your exercise here."
-                            autofocus required spellcheck="true"></a>
-                            <input id="search-one" type="submit" value="Search">
-                            <h2>Select a specific body area, if you want more of a variety</h2>
+
+            <div class="information">
+                <h1 class="exercise">Virtual Partner</h1>
+
+                <form id="exercise-form">
+
+                    <h2>Look for a specific exercise.</h2>
+                    <div id="row">
+                        <a name="startOver"></a><input id="search-field" type="text" name="searchfield"
+                            placeholder="Type in your exercise here." autofocus required spellcheck="true"></a>
+                        <input id="search-one" type="submit" value="Search">
+                    </div>
+
+                    <div id="bodyArea">
+                        <h2>Select Body Area</h2>
+
                         <fieldset>
                             <legend>Select Body Area</legend>
-                        <label for ="B1">Abs</label>
-                        <input type="radio" name="Body" id="B1" Value="10">
-                        <label for ="B2">Arms</label>
-                        <input type="radio" name="Body" id="B2" Value="8">
-                        <label for ="B3">Back</label>
-                        <input type="radio" name="Body" id="B3" Value="12">
-                        <label for ="B4">Calves</label>
-                        <input type="radio" name="Body" id="B4" Value="14">
-                        <label for ="B5">Chest</label>
-                        <input type="radio" name="Body" id="B5" Value="11">
-                        <label for ="B6">Legs</label>
-                        <input type="radio" name="Body" id="B6" Value="9">
-                        <label for ="B7">Shoulders</label>
-                        <input type="radio" name="Body" id="B7" Value="13">
-                    </fieldset>
+                            <label for="B1">Abs</label>
+                            <input type="radio" name="Body" id="B1" Value="10">
+                            <label for="B2">Arms</label>
+                            <input type="radio" name="Body" id="B2" Value="8">
+                            <label for="B3">Back</label>
+                            <input type="radio" name="Body" id="B3" Value="12">
+                            <label for="B4">Calves</label>
+                            <input type="radio" name="Body" id="B4" Value="14">
+                            <label for="B5">Chest</label>
+                            <input type="radio" name="Body" id="B5" Value="11">
+                            <label for="B6">Legs</label>
+                            <input type="radio" name="Body" id="B6" Value="9">
+                            <label for="B7">Shoulders</label>
+                            <input type="radio" name="Body" id="B7" Value="13">
+                        </fieldset>
                         <input id="search-two" type="submit" value="Search">
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
+
         </header>
 
         <div class="content">
@@ -68,8 +77,8 @@
                 <h2 class="boxtitle youtubetitle"><span class="title_style"><i class="fa fa-youtube-play"
                             aria-hidden="true"></i> WATCH</span></h2>
                 <div class="results-youtube">
-                     <div class="thumbnail"></div>
-                     <div class="information"></div>
+                    <div class="thumbnail"></div>
+                    <div class="details"></div>
                 </div>
             </div>
         </div>
