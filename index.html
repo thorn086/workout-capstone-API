@@ -7,45 +7,56 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Workout Partner</title>
     <link rel="stylesheet" href="main.css" text="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Arvo|Cinzel|Inconsolata|Open+Sans+Condensed:300|Rajdhani&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e7dc9640c6.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script> function startOvr() {
+                $('#wger-results-user').empty();
+                $('#wger-learnMore-user').empty();
+                $('.results-youtube').empty();
+                $("#exercise-form").trigger('reset');
+            }</script>
 </head>
 
 <body>
     <main>
+            <a name="startOver"></a>
         <header role="banner">
 
             <div class="information">
                 <h1 class="exercise">Virtual Partner</h1>
 
                 <form id="exercise-form">
-
-                    <h2>Look for a specific exercise.</h2>
+                    
+                    <h2>Looking for a Specific Exercise?</h2>
                     <div id="row">
-                        <a name="startOver"></a><input id="search-field" type="text" name="searchfield"
+                        <input id="search-field" type="text" name="searchfield"
                             placeholder="Type in your exercise here." autofocus required spellcheck="true"></a>
                         <input id="search-one" type="submit" value="Search">
                     </div>
-
+                    <h2>OR,</h2>
                     <div id="bodyArea">
-                        <h2>Select Body Area</h2>
+                        <h2>Choose Body Group</h2>
 
                         <fieldset>
                             <legend>Select Body Area</legend>
-                            <label for="B1">Abs</label>
+
                             <input type="radio" name="Body" id="B1" Value="10">
-                            <label for="B2">Arms</label>
+                            <label for="B1">Abs</label>
                             <input type="radio" name="Body" id="B2" Value="8">
-                            <label for="B3">Back</label>
+                            <label for="B2">Arms</label>
                             <input type="radio" name="Body" id="B3" Value="12">
-                            <label for="B4">Calves</label>
+                            <label for="B3">Back</label>
                             <input type="radio" name="Body" id="B4" Value="14">
-                            <label for="B5">Chest</label>
+                            <label for="B4">Calves</label>
                             <input type="radio" name="Body" id="B5" Value="11">
-                            <label for="B6">Legs</label>
+                            <label for="B5">Chest</label>
                             <input type="radio" name="Body" id="B6" Value="9">
-                            <label for="B7">Shoulders</label>
+                            <label for="B6">Legs</label>
                             <input type="radio" name="Body" id="B7" Value="13">
+                            <label for="B7">Shoulders</label>
+                            
                         </fieldset>
                         <input id="search-two" type="submit" value="Search">
                     </div>
@@ -56,12 +67,13 @@
 
         <div class="content">
             <div class="box left">
-                <h2>Your Exercise</h2>
+                <h2>Your Exercises</h2>
                 <div class="your-results-wger">
                     <ul id="wger-results-user">
                     </ul>
-                    <button id="next-hidden">Next</button>
-                    <button id="previous-hidden">Previous</button>
+                    <button id="previous-hidden"><i class="fas fa-arrow-circle-left fa-3x"></i><span>Previous</span></button>
+                    <button id="next-hidden"><i class="fas fa-arrow-circle-right fa-3x"></i><span>Next</span></button>
+
                     <p id="js-error-message hide" class="error-message"></p>
                 </div>
                 <div class="your-learnMore-wger">
@@ -74,8 +86,7 @@
 
         <div class="content">
             <div class="box right">
-                <h2 class="boxtitle youtubetitle"><span class="title_style"><i class="fa fa-youtube-play"
-                            aria-hidden="true"></i> WATCH</span></h2>
+                <h2 class="boxtitle youtubetitle"><i class="fab fa-youtube"></i> WATCH</h2>
                 <div class="results-youtube">
                     <div class="thumbnail"></div>
                     <div class="details"></div>
@@ -86,11 +97,13 @@
 
     </main>
     <footer>
-        <div class="newSerach">
-            <h2>New Search</h2>
+        <div class="newSearch" >
+            <button class="startOT" onclick="startOvr()"><a href="#startOver"><i  class="fas fa-search fa-lg"></i></a></button>
+            
         </div>
     </footer>
     <script src="index.js"></script>
+    
 </body>
 
 </html>
