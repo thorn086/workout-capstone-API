@@ -208,7 +208,7 @@ function getYouTubeVideos(searchTermYouTube) {
         })
         .then(responseJson => videoResults(responseJson))
         .catch(err => {
-            $('.error-message').text(`Something went wrong: ${err.message}`);
+            $('.error-youtube-message').text(`Something went wrong: ${err.message}`);
         });
 }
 
