@@ -59,7 +59,7 @@ function idResults(idJson) {
     searchTermYouTube = `${idJson.name}`;
     getYouTubeVideos(searchTermYouTube);
     console.log(searchTermYouTube);
-    $('#wger-results-user').hide();
+    $('.your-results-wger').hide();
 
     $('#wger-learnMore-user').append(
         `<li><h3>${idJson.name}</h3>
@@ -75,7 +75,7 @@ function idResults(idJson) {
 };
 
 function goBack() {
-    $('#wger-results-user').show();
+    $('.your-results-wger').show();
     $('#wger-learnMore-user').empty();
     $('.results-youtube').empty();
 
@@ -98,46 +98,35 @@ function radioResults(radioJson, bodyArea) {
     bodyArea = $($(":radio[name=Body]:checked").prop("labels")).text();
     $('#wger-results-user').empty();
     
-    if (radioJson.previous === null) {
-        $('#next-hidden').show();
+    if (radioJson.previous === null && radioJson.next === null) {
+        $('#next-hidden').hide();
         $('#previous-hidden').hide();
-        for (let i = 0; i < radioJson.results.length; i++) {
-
-            $('#wger-results-user').append(
-                `<li><h3>${radioJson.results[i].name}</h3>
-            <p>${bodyArea}</p>
-            <button class="id-fetch" data-id="${radioJson.results[i].id}">Learn More</button>
-            </li>`
-            )
-        };
-    } else if (radioJson.next === null) {
+      
+    } else if (radioJson.previous === null) {
+        $('#previous-hidden').hide();
+        $('#next-hidden').show();
+       
+    } else if (radioJson.next === null){
         $('#previous-hidden').show();
         $('#next-hidden').hide();
-        for (let i = 0; i < radioJson.results.length; i++) {
+        
 
-            $('#wger-results-user').append(
-                `<li><h3>${radioJson.results[i].name}</h3>
-            <p>${bodyArea}</p>
-            
-            <button class="id-fetch" data-id="${radioJson.results[i].id}">Learn More</button>
-            </li>`
-            )
-        };
     } else {
         $('#next-hidden').show();
         $('#previous-hidden').show();
-        for (let i = 0; i < radioJson.results.length; i++) {
-
-            $('#wger-results-user').append(
-                `<li><h3>${radioJson.results[i].name}</h3>
-        <p>${bodyArea}</p>
-        <button class="id-fetch" data-id="${radioJson.results[i].id}">Learn More</button>
-        </li>`
-            )
-        };
+        
 
         //$('#results').removeClass('hidden');
     }
+    for (let i = 0; i < radioJson.results.length; i++) {
+
+        $('#wger-results-user').append(
+            `<li><h3>${radioJson.results[i].name}</h3>
+    <p>${bodyArea}</p>
+    <button class="id-fetch" data-id="${radioJson.results[i].id}">Learn More</button>
+    </li>`
+        )
+    };
 };
 
 
@@ -185,11 +174,14 @@ function handleSubmit() {
 }
 // id fetch display description and name
 function handleLearnMore() {
+    
     $('#wger-results-user').on('click', '.id-fetch', event => {
         const idName = $(event.target).attr('data-id')
         console.log(idName);
         fetchExInfo(idName);
+
     });
+   
 
 }
 
@@ -229,13 +221,14 @@ function videoResults(responseJson) {
 
         $('.results-youtube').append(
             `<li>
-            <img class="thumbnail" src='${responseJson.items[i].snippet.thumbnails.default.url}'>
+            <div class="videoWrapper"><iframe src="https://www.youtube.com/embed/${responseJson.items[i].id.videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
             <h4>${responseJson.items[i].snippet.title}</h4>
             <p>${responseJson.items[i].snippet.description}</p>
             </li>`
         )
+        
     };
-
+    
 }
 
 
@@ -323,13 +316,13 @@ function radioButtonSearch() {
 
 
 
-
 $(function () {
     handleSubmit();
     handleLearnMore();
     radioButtonSearch();
     handleNextButton();
     handlePreviousButton();
+    
 });
 
 

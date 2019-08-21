@@ -7,33 +7,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Workout Partner</title>
     <link rel="stylesheet" href="main.css" text="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Arvo|Cinzel|Inconsolata|Open+Sans+Condensed:300|Rajdhani&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Arvo|Cinzel|Inconsolata|Open+Sans+Condensed:300|Rajdhani&display=swap"
+        rel="stylesheet">
     <script src="https://kit.fontawesome.com/e7dc9640c6.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-        <script> function startOvr() {
-                $('#wger-results-user').empty();
-                $('#wger-learnMore-user').empty();
-                $('.results-youtube').empty();
-                $("#exercise-form").trigger('reset');
-            }</script>
+
 </head>
 
 <body>
     <main>
-            <a name="startOver"></a>
-        <header role="banner">
+
+        <header>
+
+
 
             <div class="information">
+                <div class="titleImg"></div>
                 <h1 class="exercise">Virtual Partner</h1>
 
                 <form id="exercise-form">
-                    
+
                     <h2>Looking for a Specific Exercise?</h2>
                     <div id="row">
                         <input id="search-field" type="text" name="searchfield"
-                            placeholder="Type in your exercise here." autofocus required spellcheck="true"></a>
-                        <input id="search-one" type="submit" value="Search">
+                            placeholder="Type in your exercise here." required spellcheck="true">
+                        <label for="search-field" class="clip">search entry</label>
+                        <button id="search-one" type="submit">Search</button>
+
                     </div>
                     <h2>OR,</h2>
                     <div id="bodyArea">
@@ -56,36 +58,40 @@
                             <label for="B6">Legs</label>
                             <input type="radio" name="Body" id="B7" Value="13">
                             <label for="B7">Shoulders</label>
-                            
+
                         </fieldset>
-                        <input id="search-two" type="submit" value="Search">
+                        <button id="search-two" type="submit">Search</button>
                     </div>
                 </form>
             </div>
 
         </header>
 
-        <div class="content">
-            <div class="box left">
+        <div class="content left">
+            <div class="box ">
                 <h2>Your Exercises</h2>
                 <div class="your-results-wger">
                     <ul id="wger-results-user">
-                    </ul>
-                    <button id="previous-hidden"><i class="fas fa-arrow-circle-left fa-3x"></i><span>Previous</span></button>
-                    <button id="next-hidden"><i class="fas fa-arrow-circle-right fa-3x"></i><span>Next</span></button>
 
-                    <p id="js-error-message hide" class="error-message"></p>
+
+                    </ul>
+                    <button id="previous-hidden"><i class="fas fa-arrow-circle-left fa-3x"><span
+                                class="clip">Previous</span></i></button>
+                    <button id="next-hidden"><i class="fas fa-arrow-circle-right fa-3x"><span
+                                class="clip">Next</span></i></button>
+                    <p id="js-error-message-hide" class="error-message"></p>
+
                 </div>
                 <div class="your-learnMore-wger">
                     <ul id="wger-learnMore-user">
                     </ul>
-                    <p id="js-error-message hide" class="error-message"></p>
+                    <p id="js-err-message hide" class="error-message"></p>
                 </div>
             </div>
         </div>
 
-        <div class="content">
-            <div class="box right">
+        <div class="content right">
+            <div class="box ">
                 <h2 class="boxtitle youtubetitle"><i class="fab fa-youtube"></i> WATCH</h2>
                 <div class="results-youtube">
                     <div class="thumbnail"></div>
@@ -97,13 +103,13 @@
 
     </main>
     <footer>
-        <div class="newSearch" >
-            <button class="startOT" onclick="startOvr()"><a href="#startOver"><i  class="fas fa-search fa-lg"></i></a></button>
-            
+        <div class="newSearch">
+
+
         </div>
     </footer>
     <script src="index.js"></script>
-    
+
 </body>
 
 </html>
