@@ -116,7 +116,7 @@ function radioResults(radioJson, bodyArea) {
         $('#previous-hidden').show();
         
 
-      
+        
     }
     for (let i = 0; i < radioJson.results.length; i++) {
 
@@ -157,7 +157,7 @@ function getTerm(userTerm) {
             activateScroll();
         })
         .catch(err => {
-            $('#js-error-message').text(`Opps!: ${err.message}`);
+            $('.error-message').text(`Opps!: ${err.message}`);
         });
 }
 
@@ -208,7 +208,7 @@ function getYouTubeVideos(searchTermYouTube) {
         })
         .then(responseJson => videoResults(responseJson))
         .catch(err => {
-            $('#js-error-message').text(`Something went wrong: ${err.message}`);
+            $('.error-message').text(`Something went wrong: ${err.message}`);
         });
 }
 
@@ -246,7 +246,7 @@ function handleNextButton() {
             })
             .then(nextPageJson => radioResults(nextPageJson))
             .catch(err => {
-                $('#js-error-message').text(`Opps!: ${err.message}`);
+                $('.error-message').text(`Opps!: ${err.message}`);
             });
     });
 }
@@ -263,7 +263,7 @@ function handlePreviousButton() {
             })
             .then(previousSearchResultJson => radioResults(previousSearchResultJson))
             .catch(err => {
-                $('#js-error-message').text(`Opps!: ${err.message}`);
+                $('.error-message').text(`Opps!: ${err.message}`);
             });
     });
 }
@@ -284,7 +284,7 @@ function fetchExInfo(idName) {
         })
         .then(idJson => idResults(idJson))
         .catch(err => {
-            $('#js-error-message').text(`Opps!: ${err.message}`);
+            $('.error-message').text(`Opps!: ${err.message}`);
         });
 }
 
@@ -309,7 +309,7 @@ function radioButtonSearch() {
             activateScroll();
             })
             .catch(err => {
-                $('#js-error-message').text(`Opps!: ${err.message}`);
+                $('.error-message').text(`Opps!: ${err.message}`);
             });
     });
 }
