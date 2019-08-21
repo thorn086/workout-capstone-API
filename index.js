@@ -208,7 +208,7 @@ function getYouTubeVideos(searchTermYouTube) {
         })
         .then(responseJson => videoResults(responseJson))
         .catch(err => {
-            $('#js-error-message').text(`Sorry Something Went Wrong, Try Again Later!: ${err.message}`);
+            $('#js-err-message').text(`Sorry Something Went Wrong, Try Again Later!: ${err.message}`);
         });
 }
 
@@ -284,7 +284,7 @@ function fetchExInfo(idName) {
         })
         .then(idJson => idResults(idJson))
         .catch(err => {
-            $('#js-error-message').text(`Sorry Something Went Wrong, Try Again Later!: ${err.message}`);
+            $('#js-err-message').text(`Sorry Something Went Wrong, Try Again Later!: ${err.message}`);
         });
 }
 
