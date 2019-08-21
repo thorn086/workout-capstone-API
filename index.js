@@ -47,7 +47,7 @@ function displayResults(wgerJson) {
             )
         };
     }
-    //$('#results').removeClass('hidden');
+    
 };
 
 
@@ -71,7 +71,7 @@ function idResults(idJson) {
     );
 
 
-    //$('#results').removeClass('hidden');
+   
 };
 
 function goBack() {
@@ -116,7 +116,7 @@ function radioResults(radioJson, bodyArea) {
         $('#previous-hidden').show();
         
 
-        //$('#results').removeClass('hidden');
+      
     }
     for (let i = 0; i < radioJson.results.length; i++) {
 
