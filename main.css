@@ -563,21 +563,21 @@ h1{
 }
 #search-two{
     margin-top:40px;
-    margin-left: 328px;
+    margin-left: 410px;
 }
 .information{
-    padding-bottom: 200px;
+    padding-bottom: 300px;
     width: 70%;
     
-    margin-left:190px;
+    margin-left:210px;
 }
 .content{
     width: 500px;
 }
 .content.right{
-    right:60px;
+    right:200px;
 }
 .content.left{
-    left: 100px;
+    left: 200px;
 }
 }
