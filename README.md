@@ -12,10 +12,10 @@
 
  Screen Shots:
 
- ![StartPage](images/Start Screen.png)
- ![SearchChoices](images/Search Choices.png)
+ ![StartPage](images/Start-Screen.png)
+ ![SearchChoices](images/Search-Choices.png)
  ![Description](images/Description.png)
- ![FinalResult](images/Final Results.png)
+ ![FinalResult](images/Final-Results.png)
 
 
  Tech Used:
