@@ -12,12 +12,12 @@
 
  Screen Shots:
 
- ![Start Page](images/Start Screen.png)
- ![Search Choices](images/Search Choices.png)
+ ![StartPage](images/Start Screen.png)
+ ![SearchChoices](images/Search Choices.png)
  ![Description](images/Description.png)
- ![Final Result](images/Final Results.png)
+ ![FinalResult](images/Final Results.png)
 
 
  Tech Used:
- 
+
  HTML/CSS/JavaScript/jQuery
