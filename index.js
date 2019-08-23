@@ -82,10 +82,11 @@ function goBack() {
 }
 
 function startOvr() {
+    $('.your-results-wger').show();
     $('#wger-results-user').empty();
     $('#wger-learnMore-user').empty();
     $('.results-youtube').empty();
-    $("#exercise-form").trigger('reset');
+    //$("#exercise-form").trigger('reset');
 }
 
 // display results from search two to the DOM
