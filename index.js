@@ -271,7 +271,7 @@ function handlePreviousButton() {
 
 //Search wger by Id name in first fetch
 function fetchExInfo(idName) {
-    const exURL = "https:/wger.de/api/v2/exercise/" + idName;
+    const exURL = "https://wger.de/api/v2/exercise/" + idName;
 
     console.log(exURL);
 
