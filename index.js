@@ -66,7 +66,7 @@ function idResults(idJson) {
         <p>${idJson.description}</p>
         <button id="backBtn" onclick="goBack()"> Go Back</button>
         <button onclick="startOvr()" class="startOvr"><a href="#startOver">Search Again</a></button></li>
-        <p>Scroll down for Video References</p>`
+        `
 
     );
 
