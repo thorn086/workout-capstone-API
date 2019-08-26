@@ -12,7 +12,6 @@ let bodyArea;
 
 
 function activateScroll(){
-    console.log("activateScroll");
     $('html,header').animate({ scrollTop: $('.content').offset().top - 20});    
 }
 
@@ -55,10 +54,10 @@ function displayResults(wgerJson) {
 // display id from handleLearnMore() to DOM
 function idResults(idJson) {
 
-    console.log(idJson);
+    
     searchTermYouTube = `${idJson.name}`;
     getYouTubeVideos(searchTermYouTube);
-    console.log(searchTermYouTube);
+    
     $('.your-results-wger').hide();
 
     $('#wger-learnMore-user').append(
@@ -85,14 +84,18 @@ function startOvr() {
     $('.your-results-wger').show();
     $('#wger-results-user').empty();
     $('#wger-learnMore-user').empty();
+    $('.error-message').empty();
     $('.results-youtube').empty();
     $("#exercise-form").trigger('reset');
+    $(".boxtitle-hidden").hide(); 
+    $('#next-hidden').hide();
+    $('#previous-hidden').hide(); 
 }
 
 // display results from search two to the DOM
 function radioResults(radioJson, bodyArea) {
 
-    console.log(radioJson);
+    
 
     previousSearchResult = radioJson.previous;
     nextJson = radioJson.next;
@@ -143,7 +146,7 @@ function getTerm(userTerm) {
     let queryString = formatQueryParams(params);
     const url = searchURL + '?' + queryString;
 
-    console.log(url);
+  
 
     fetch(url)
         .then(wger => {
@@ -155,10 +158,11 @@ function getTerm(userTerm) {
         .then(wgerJson => {
 
             displayResults(wgerJson)
+            $(".boxtitle-hidden").show();  
             activateScroll();
         })
         .catch(err => {
-            $('#js-error-message').text(`Sorry Something Went Wrong, Try Again Later!: ${err.message}`);
+            $('#js-er-message').text(`Sorry, something went wrong, check your internet connection or Try Again Later!: ${err.message}`);
         });
 }
 
@@ -168,6 +172,7 @@ function handleSubmit() {
     $('#search-one').on('click', event => {
         event.preventDefault();
         const userTerm = $('#search-field').val();
+        startOvr();
         
         getTerm(userTerm);
         
@@ -178,11 +183,10 @@ function handleLearnMore() {
     
     $('#wger-results-user').on('click', '.id-fetch', event => {
         const idName = $(event.target).attr('data-id')
-        console.log(idName);
+       
         fetchExInfo(idName);
 
     });
-   
 
 }
 
@@ -198,7 +202,7 @@ function getYouTubeVideos(searchTermYouTube) {
 
     let queryString = formatQueryParams(tubeParams)
     const youTubeURL = searchYtURL + '?' + queryString;
-    console.log(youTubeURL);
+    
 
     fetch(youTubeURL)
         .then(response => {
@@ -209,13 +213,13 @@ function getYouTubeVideos(searchTermYouTube) {
         })
         .then(responseJson => videoResults(responseJson))
         .catch(err => {
-            $('#js-err-message').text(`Sorry Something Went Wrong, Try Again Later!: ${err.message}`);
+            $('#js-err-message').text(`Sorry, something went wrong, check your internet connection or Try Again Later!: ${err.data}`);
         });
 }
 
 function videoResults(responseJson) {
 
-    console.log(responseJson);
+    
     $('.results-youtube').empty();
 
     for (let i = 0; i < responseJson.items.length; i++) {
@@ -247,7 +251,7 @@ function handleNextButton() {
             })
             .then(nextPageJson => radioResults(nextPageJson))
             .catch(err => {
-                $('#js-error-message').text(`Sorry Something Went Wrong, Try Again Later!: ${err.message}`);
+                $('#js-error-message').text(`Sorry, something went wrong, check your internet connection or Try Again Later!: ${err.message}`);
             });
     });
 }
@@ -264,7 +268,7 @@ function handlePreviousButton() {
             })
             .then(previousSearchResultJson => radioResults(previousSearchResultJson))
             .catch(err => {
-                $('#js-error-message').text(`Sorry Something Went Wrong, Try Again Later!: ${err.message}`);
+                $('#js-error-message').text(`Sorry, something went wrong, check your internet connection or Try Again Later!: ${err.message}`);
             });
     });
 }
@@ -274,7 +278,7 @@ function handlePreviousButton() {
 function fetchExInfo(idName) {
     const exURL = "https://wger.de/api/v2/exercise/" + idName;
 
-    console.log(exURL);
+    
 
     fetch(exURL)
         .then(id => {
@@ -285,7 +289,7 @@ function fetchExInfo(idName) {
         })
         .then(idJson => idResults(idJson))
         .catch(err => {
-            $('#js-err-message').text(`Sorry Something Went Wrong, Try Again Later!: ${err.message}`);
+            $('#js-err-message').text(`Sorry, something went wrong, check your internet connection or Try Again Later!: ${err.message}`);
         });
 }
 
@@ -296,9 +300,8 @@ function radioButtonSearch() {
         let radioValue = $("input[name='Body']:checked").val();
         const radioURL = "https://wger.de/api/v2/exercise/?limit=5&category=" + radioValue + "&language=2&status=2";
 
+        startOvr();
         
-        console.log(bodyArea);
-        console.log(radioURL);
         fetch(radioURL)
             .then(radio => {
                 if (radio.ok) {
@@ -307,10 +310,11 @@ function radioButtonSearch() {
                 throw new Error(radio.statusText);
             })
             .then(radioJson => {radioResults(radioJson, bodyArea)
+            $(".boxtitle-hidden").show();    
             activateScroll();
             })
             .catch(err => {
-                $('#js-error-message').text(`Sorry Something Went Wrong, Try Again Later!: ${err.message}`);
+                $('#js-error-message').text(`Sorry, something went wrong, check your internet connection or Try Again Later!: ${err.message}`);
             });
     });
 }

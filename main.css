@@ -40,7 +40,7 @@ header {
 
 .hide,
 #next-hidden,
-#previous-hidden {
+#previous-hidden, .boxtitle-hidden {
     display: none;
     background-color: transparent;
     border: none;
@@ -580,10 +580,10 @@ fieldset{
     width: 500px;
 }
 .content.right{
-    right:200px;
+    right:80px;
 }
 .content.left{
-    left: 200px;
+    left: 80px;
 }
 
 }

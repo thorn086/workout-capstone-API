@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset= "UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Description" content="Author: Darren Rose, search for exercises, category:fitness, pages:3">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <main>
+   
         <header>
             <div class="information">
                 <a id="startOver"></a>
@@ -28,16 +28,17 @@
                 <form id="exercise-form">
 
                     <h2>Looking for a Specific Exercise?</h2>
-                    <div id="row">
-                        <input id="search-field" type="text" name="searchfield"
-                            placeholder="Type in your exercise here." required spellcheck="true">
+                    <section id="row">
+                        <input id="search-field" type="text" placeholder="Bicep Curls" required>
                         <label for="search-field" class="clip">search entry</label>
                         <button id="search-one" type="submit">Search</button>
-                    </div>
-
+                    </section>
+                </form>
+                <p id="js-er-message" class="error-message"></p>
+                
                     <h2>OR,</h2>
-
-                    <div id="bodyArea">
+                <form>
+                    <section id="bodyArea">
                         <h2>Choose Body Group</h2>
 
                         <fieldset>
@@ -59,41 +60,43 @@
                             <label for="B7">Shoulders</label>
                         </fieldset>
                         <button id="search-two" type="submit">Search</button>
-                    </div>
+                        <p id="js-error-message" class="error-message"></p>
+                    </section>
                 </form>
+                
             </div>
         </header>
 
-        <div class="content left">
+    <main>
+        <section class="content left">
             <div class="box ">
-                <h2>Your Exercises</h2>
-                <div class="your-results-wger">
-                    <ul id="wger-results-user">
+                <h2 class="boxtitle-hidden">Your Exercises</h2>
+                <section class="your-results-wger">
+                    <ul id="wger-results-user" aria-label="polite">
                     </ul>
                     <button id="previous-hidden"><i class="fas fa-arrow-circle-left fa-3x"><span
                                 class="clip">Previous</span></i></button>
                     <button id="next-hidden"><i class="fas fa-arrow-circle-right fa-3x"><span
-                                class="clip">Next</span></i></button>
-                    <p id="js-error-message " class="error-message"></p>
-                    <p id="js-er-message " class="error-message"></p>
-                </div>
+                                class="clip">Next</span></i></button>   
+                </section>
 
-                <div class="your-learnMore-wger">
-                        <ul id="wger-learnMore-user">
+                <section class="your-learnMore-wger">
+                        <ul id="wger-learnMore-user" aria-live="polite">
                         </ul>
-                </div>
+                </section>
+
             </div>
-        </div>
+        </section>
        
-        <div class="content right">
+        <section class="content right">
             <div class="box ">
-                <h2 class="boxtitle youtubetitle"><i class="fab fa-youtube"></i> WATCH</h2>
-                <div class="results-youtube">
+                <h2 class="boxtitle-hidden"><i class="fab fa-youtube"></i> WATCH</h2>
+                <div class="results-youtube" aria-live="polite">
                     
                 </div>
                 <p id="js-err-message hide" class="error-message"></p>
             </div>
-        </div>
+        </section>
 
 
     </main>
