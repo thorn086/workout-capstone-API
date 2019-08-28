@@ -33,23 +33,28 @@
                         <label for="search-field" class="clip">search entry</label>
                         <button id="search-one" type="submit">Search</button>
                     </section>
+                    <p id="js-er-message" class="error-message"></p>
                 </form>
-                <p id="js-er-message" class="error-message"></p>
+                
                 
                     <h2>OR,</h2>
-                <form>
+                <form id="body-form">
                     <section id="bodyArea">
                         <h2>Choose Body Group</h2>
 
                         <fieldset>
                             <legend>Select Body Area</legend>
 
-                            <input type="radio" name="Body" id="B1" Value="10">
+                            <div id="input-field">
+                            <input type="radio" name="Body" id="B1" Value="10"required>
                             <label for="B1">Abs</label>
                             <input type="radio" name="Body" id="B2" Value="8">
                             <label for="B2">Arms</label>
                             <input type="radio" name="Body" id="B3" Value="12">
                             <label for="B3">Back</label>
+                            </div>
+
+                            <div id="input-field1">
                             <input type="radio" name="Body" id="B4" Value="14">
                             <label for="B4">Calves</label>
                             <input type="radio" name="Body" id="B5" Value="11">
@@ -58,6 +63,8 @@
                             <label for="B6">Legs</label>
                             <input type="radio" name="Body" id="B7" Value="13">
                             <label for="B7">Shoulders</label>
+                            </div>
+
                         </fieldset>
                         <button id="search-two" type="submit">Search</button>
                         <p id="js-error-message" class="error-message"></p>

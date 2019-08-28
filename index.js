@@ -89,7 +89,9 @@ function startOvr() {
     $("#exercise-form").trigger('reset');
     $(".boxtitle-hidden").hide(); 
     $('#next-hidden').hide();
-    $('#previous-hidden').hide(); 
+    $('#previous-hidden').hide();
+    
+    
 }
 
 // display results from search two to the DOM
@@ -126,9 +128,9 @@ function radioResults(radioJson, bodyArea) {
 
         $('#wger-results-user').append(
             `<li><h3>${radioJson.results[i].name}</h3>
-    <p>${bodyArea}</p>
-    <button class="id-fetch" data-id="${radioJson.results[i].id}">Learn More</button>
-    </li>`
+            <p>${bodyArea}</p>
+            <button class="id-fetch" data-id="${radioJson.results[i].id}">Learn More</button>
+            </li>`
         )
     };
 };
@@ -146,7 +148,7 @@ function getTerm(userTerm) {
     let queryString = formatQueryParams(params);
     const url = searchURL + '?' + queryString;
 
-  
+    startOvr();
 
     fetch(url)
         .then(wger => {
@@ -169,11 +171,9 @@ function getTerm(userTerm) {
 
 // listener for the submit button(search one) to display the results
 function handleSubmit() {
-    $('#search-one').on('click', event => {
+    $('#exercise-form').submit( event => {
         event.preventDefault();
         const userTerm = $('#search-field').val();
-        startOvr();
-        
         getTerm(userTerm);
         
     });
@@ -295,11 +295,11 @@ function fetchExInfo(idName) {
 
 //listener for search two
 function radioButtonSearch() {
-    $('#search-two').on('click', event => {
+    $('#body-form').submit( event => {
         event.preventDefault();
         let radioValue = $("input[name='Body']:checked").val();
         const radioURL = "https://wger.de/api/v2/exercise/?limit=5&category=" + radioValue + "&language=2&status=2";
-
+        
         startOvr();
         
         fetch(radioURL)
@@ -317,7 +317,7 @@ function radioButtonSearch() {
                 $('#js-error-message').text(`Sorry, something went wrong, check your internet connection or Try Again Later!: ${err.message}`);
             });
     });
-}
+    }
 
 
 
